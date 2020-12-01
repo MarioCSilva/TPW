@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>
+       {% for book in data %}
+           <a href="../book_details/{{ book.id }}"> {{ book }}</a><br>
+       {% endfor %}
+    </h1>
+
+{% endblock %}

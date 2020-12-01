@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navbarDefault">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'books_page' %}">Books</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%  url 'authors_page' %}">authors_page</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%  url 'publishers_page' %}">publishers_page</a>
+        </li>
+    </ul>
+    {% include 'loginpartial.html' %}
+</div>
+<div class="container" style="padding-top: 40%">
+{% block content %}
+
+{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>Title: </h1>
+    <span>{{ data.title }}</span>
+    <h1>Date: </h1>
+    <span>{{ data.date }}</span>
+    <h1>Authors:</h1>
+        {% for author in data.authors.all %}
+           <span>{{ author }}</span>
+        {% endfor %}
+    <h1>Publisher: </h1>
+    <span>{{ data.publisher }}</span>
+
+{% endblock %}

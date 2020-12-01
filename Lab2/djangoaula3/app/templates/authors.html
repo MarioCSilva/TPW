@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>
+       {% for author in data %}
+           <a href="../author_details/{{ author.id }}"> {{ author }}</a>    <a href="../author_books/{{ author.id }}">Livros</a> <br>
+       {% endfor %}
+    </h1>
+
+{% endblock %}

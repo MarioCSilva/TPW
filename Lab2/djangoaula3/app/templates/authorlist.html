@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+    <p>Search by: <strong>{{ query }}</strong></p>
+    {% if auths %}
+        <p>Found {{ auths|length }} authors{{ auths|pluralize }}.</p>
+        <ul>
+        {% for author in auths %}
+            <li><a href="../author_details/{{ author.id }}">{{ author }}</a></li>
+            <ul>
+                <li>{{ author.email }}</li>
+            </ul>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Not found any result.</p>
+    {% endif %}
+{% endblock %}

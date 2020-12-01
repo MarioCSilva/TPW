@@ -1,0 +1,172 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<table id="bodyCV">
+  <tr>
+    <td class="tableHeader tableHeaderHeight">
+      <p>Europass</p>
+      <p>Curriculum vitae</p>
+      <p class="importantParagraph">Personal information</p>
+    </td>
+    <td class="spacer1">&nbsp;&nbsp;</td>
+    <td class="spacer2 separator tableHeaderHeight"></td>
+    <td class="spacer2 tableHeaderHeight">&nbsp;&nbsp;</td>
+    <td class="tableHeaderHeight" id="foto">
+        {% load static %}
+        <img src="{% static "img/" %}{{ eurocv.foto }}">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Surname(s) / First name(s)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="name">{{  eurocv.personalInfo.name.firstname }} {{ eurocv.personalInfo.name.lastname }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Address(es)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="address">{{ eurocv.personalInfo.address.street }},{{ eurocv.personalInfo.address.country  }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Telephone(s)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="phone">+{{ eurocv.personalInfo.contact.phone.countryprefix }} {{ eurocv.personalInfo.contact.phone.number }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Fax(es)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="fax">{{ eurocv.personalInfo.contact.fax.countryprefix }} {{ eurocv.personalInfo.contact.fax.number }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">E-mail(s)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="email">
+        {% for email in eurocv.personalInfo.contact.email %}
+            {{ email.type }} : {{ email.value }} </br>
+        {% endfor %}
+    </td>
+
+  </tr>
+  <tr>
+    <td></td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Nationality(-ies)</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="nationality">{{ eurocv.personalInfo.nacionality }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Date of birth</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="birthdate">{{ eurocv.personalInfo.birthdate.day }}/{{ eurocv.personalInfo.birthdate.month }}/{{ eurocv.personalInfo.birthdate.year }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Gender</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="gender">{{ eurocv.personalInfo.gender }}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="spacer3">
+      <p class="importantParagraph">Desired employment /<br>Occupational field</p>
+    </td>
+    <td class="spacer1 spacer3"></td>
+    <td class="spacer2 spacer3 separator">&nbsp;</td>
+    <td class="spacer2 spacer3"></td>
+    <td class="fieldsValue spacer3" id="desiredEmploy">{{ eurocv.desiredEmploy }}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Work experience</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td> </td>
+  <tr>
+    <td class="fieldsHeader">Dates</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="wexpDates">start:{{ eurocv.workexperience.position.dates.start.month}}/{{ eurocv.workexperience.position.dates.start.year}}   end:{{ eurocv.workexperience.position.dates.end.month }}/{{ eurocv.workexperience.position.dates.end.year}}
+    </td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Occupation or position held</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="occupation">&nbsp;{{ eurocv.workexperience.position.occupation }}</td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Main activities and responsibilities</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="activities">{% for act in eurocv.workexperience.position.activities.activity %}
+        {{ act.designation }} {{ act.time }}
+        {% endfor %}
+    </td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Name and address of employer</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="employer">{{ eurocv.workexperience.position.employer.name }}    /
+    {{ eurocv.workexperience.position.employer.address.street }},{{ eurocv.workexperience.position.employer.address.local }},{{ eurocv.workexperience.position.employer.address.country }}
+    </td>
+  </tr>
+  <tr>
+    <td class="fieldsHeader">Type of business or sector</td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td class="fieldsValue" id="businessSector">&nbsp;{{ eurocv.workexperience.position.businessSector }}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="spacer1"></td>
+    <td class="spacer2 separator">&nbsp;</td>
+    <td class="spacer2"></td>
+    <td></td>
+  </tr>
+</table>
+
+{% endblock %}

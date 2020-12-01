@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>
+       {% for pub in data %}
+           <a href="../publisher_details/{{ pub.id }}"> {{ pub }}</a>     <a href="../publisher_authors/{{ pub.id }}">Authors</a><br>
+       {% endfor %}
+    </h1>
+
+{% endblock %}
