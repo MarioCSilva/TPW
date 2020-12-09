@@ -9,16 +9,10 @@ import { PUBLISHERS } from '../publisherslist';
 })
 
 export class PublishersComponent implements OnInit {
-
   publishers: Publisher[];
-  selectedPublisher: Publisher;
 
   constructor() {
     this.publishers = PUBLISHERS;
-  }
-
-  onSelect(publisher: Publisher): void {
-    this.selectedPublisher = publisher;
   }
 
   ngOnInit() { }

@@ -5,12 +5,18 @@ import { AppComponent } from './app.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { PublishersComponent } from './publishers/publishers.component';
 import { AppRoutingModule } from './app-routing.module';
+import { OverviewComponent } from './overview/overview.component';
+import { AuthorDetailsComponent } from './author-details/author-details.component';
+import { PublisherDetailsComponent } from './publisher-details/publisher-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorsComponent,
-    PublishersComponent
+    PublishersComponent,
+    OverviewComponent,
+    AuthorDetailsComponent,
+    PublisherDetailsComponent
   ],
     imports: [
         BrowserModule,

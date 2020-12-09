@@ -9,19 +9,12 @@ import { AUTHORS } from '../authorslist';
 })
 
 export class AuthorsComponent implements OnInit {
-
   authors: Author[];
-  selectedAuthor: Author;
 
   constructor() {
     this.authors = AUTHORS;
   }
 
-  onSelect(author: Author): void {
-    this.selectedAuthor = author;
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

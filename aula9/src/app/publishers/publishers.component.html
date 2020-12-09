@@ -1,20 +1,8 @@
 <h2>Authors</h2>
 <ul class="publishers">
-  <li *ngFor="let publisher of publishers" (click)="onSelect(publisher)">
-    <span class="badge">{{ publisher.num }}</span> {{ publisher.name }}
+  <li *ngFor="let publisher of publishers">
+    <a routerLink="/publisherdetails/{{publisher.num}}">
+      <span class="badge">{{ publisher.num }}</span> {{ publisher.name }}
+    </a>
   </li>
 </ul>
-<div *ngIf="selectedPublisher">
-  <h2>Information on {{ selectedPublisher.name | uppercase }}</h2>
-  <div><span>Num: </span>{{selectedPublisher.num}}</div>
-  <div>
-    <label>Name:
-      <input placeholder="name" [(ngModel)]="selectedPublisher.name">
-    </label>
-  </div>
-  <div>
-    <label>Email:
-      <input placeholder="email" [(ngModel)]="selectedPublisher.email">
-    </label>
-  </div>
-</div>

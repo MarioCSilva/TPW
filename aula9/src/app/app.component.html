@@ -1,10 +1,16 @@
 <h1>{{title}}</h1>
+<router-outlet></router-outlet>
 <nav>
+  <div class="row">
+    <a routerLink="">Home</a>
+  </div>
+  <div class="row">
+    <a routerLink="/overview">Overview</a>
+  </div>
   <div class="row">
     <a routerLink="/authors">Authors</a>
   </div>
-  <div>
+  <div class="row">
     <a routerLink="/publishers">Publishers</a>
   </div>
 </nav>
-<router-outlet></router-outlet>

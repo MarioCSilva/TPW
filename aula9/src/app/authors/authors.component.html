@@ -1,20 +1,8 @@
 <h2>Authors</h2>
 <ul class="authors">
-  <li *ngFor="let author of authors" (click)="onSelect(author)">
-    <span class="badge">{{ author.num }}</span> {{ author.name }}
+  <li *ngFor="let author of authors">
+    <a routerLink="/authordetails/{{author.num}}">
+      <span class="badge">{{ author.num }}</span> {{ author.name }}
+    </a>
   </li>
 </ul>
-<div *ngIf="selectedAuthor">
-  <h2>Information on {{ selectedAuthor.name | uppercase }}</h2>
-  <div><span>Num: </span>{{selectedAuthor.num}}</div>
-  <div>
-    <label>Name:
-      <input placeholder="name" [(ngModel)]="selectedAuthor.name">
-    </label>
-  </div>
-  <div>
-    <label>Email:
-      <input placeholder="email" [(ngModel)]="selectedAuthor.email">
-    </label>
-  </div>
-</div>

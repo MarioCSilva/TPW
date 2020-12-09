@@ -1,0 +1,16 @@
+<h3>Some Authors</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let author of authors" class="col-1-4" routerLink="/authordetails/{{author.num}}">
+    <div class="module author">
+      <h4>{{author.name}}</h4>
+    </div>
+  </a>
+</div>
+<h3>Some Publishers</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let publisher of publishers" class="col-1-4" routerLink="/publisherdetails/{{publisher.num}}">
+    <div class="module author">
+      <h4>{{publisher.name}}</h4>
+    </div>
+  </a>
+</div>
