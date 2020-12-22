@@ -3,6 +3,7 @@ import { Author } from '../author';
 import {AUTHORS} from '../authorslist';
 import { Publisher } from '../publisher';
 import {PUBLISHERS} from '../publisherslist';
+import {AuthorService} from '../author.service';
 
 @Component({
   selector: 'app-overview',
@@ -14,13 +15,19 @@ export class OverviewComponent implements OnInit {
   authors: Author[];
   publishers: Publisher[];
 
-  constructor() {
+  constructor(private authorService: AuthorService) {
     this.authors = AUTHORS.slice(0, 4);
     this.publishers = PUBLISHERS.slice(0, 4);
   }
 
   // tslint:disable-next-line:typedef
-  ngOnInit() { }
+  ngOnInit(): void {
+    this.getAuthors();
+  }
+
+  getAuthors(): void {
+    this.authorService.getAuthorsN(4).subscribe(authors => this.authors = authors);
+  }
 
 }
 

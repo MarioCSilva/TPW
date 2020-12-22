@@ -8,6 +8,65 @@ from app.models import Book
 from app.models import Author
 from app.models import Publisher
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from app.serializers import AuthorSerializer
+
+
+@api_view(['GET'])
+def get_author(request):
+    id = int(request.GET['id'])
+    try:
+        author = Author.objects.get(id=id)
+    except Author.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = AuthorSerializer(author)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_authors(request):
+    authors = Author.objects.all()
+    if 'num' in request.GET:
+        num = int(request.Get['num'])
+        authors = authors[:num]
+    serializer = AuthorSerializer(authors, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def create_author(request):
+    serializer = AuthorSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def update_author(request):
+    id = request.data['id']
+    try:
+        author = Author.objects.get(id=id)
+    except Author.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = AuthorSerializer(author, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return HttpResponse(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def del_author(request, id):
+    try:
+        author = Author.objects.get(id=id)
+    except Author.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    author.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 def load_books(request):
     data = {
@@ -94,11 +153,11 @@ def autpubquery(request):
         if form.is_valid():
             aut = form.cleaned_data['aut']
             pub = form.cleaned_data['pub']
-            query=""
+            query = ""
             if aut != "":
-                query += " author "+aut
+                query += " author " + aut
             if pub != "":
-                query += " publisher "+pub
+                query += " publisher " + pub
             books = Book.objects.filter(authors__name__contains=aut, publisher__name__contains=pub)
             return render(request, 'booklist.html', {'boks': books, 'query': query})
     else:
@@ -107,4 +166,5 @@ def autpubquery(request):
 
 
 def load_publisher_authors(request, num):
-    return render(request, 'author_books.html', {'data': Author.objects.filter(id__in=Book.objects.filter(publisher=Publisher.objects.get(id=num)).values_list('authors').distinct())})
+    return render(request, 'author_books.html', {'data': Author.objects.filter(
+        id__in=Book.objects.filter(publisher=Publisher.objects.get(id=num)).values_list('authors').distinct())})

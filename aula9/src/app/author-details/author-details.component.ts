@@ -3,6 +3,7 @@ import { Author } from '../author';
 import { AUTHORS } from '../authorslist';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthorService } from '../author.service';
 
 @Component({
   selector: 'app-author-details',
@@ -11,11 +12,12 @@ import { Location } from '@angular/common';
 })
 
 export class AuthorDetailsComponent implements OnInit {
-  @Input() author: Author;
+  author: Author;
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private authorService: AuthorService
   ) {}
 
   ngOnInit(): void {
@@ -23,8 +25,16 @@ export class AuthorDetailsComponent implements OnInit {
   }
 
   getAuthor(): void {
-    const num = +this.route.snapshot.paramMap.get('num');
-    this.author = AUTHORS.find(author => author.num === num);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.authorService.getAuthor(id).subscribe(author => this.author = author);
+  }
+
+  update(): void {
+    this.authorService.updateAuthor(this.author).subscribe(() => this.goBack() );
+  }
+
+  delete(): void {
+    this.authorService.deleteAuthor(this.author).subscribe(() => this.goBack());
   }
 
   goBack(): void {

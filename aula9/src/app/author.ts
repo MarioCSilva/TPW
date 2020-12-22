@@ -1,6 +1,6 @@
 
 export class Author {
-  num: number;
+  id: number;
   name: string;
   email: string;
 }
